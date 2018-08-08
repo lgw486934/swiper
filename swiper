@@ -1,0 +1,452 @@
+##Swiper4各个属性/方法的含义和slide组件样式的改变
+	
+>css两个引入一个就行了
+
+	//引入本地的swiper的css样式
+	<link rel="stylesheet" src=""/>
+	//引入swiper的CDN地址
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.css">
+>改变组件样式
+
+	<style>
+        .swiper-container{/*设置外层边框的样式*/
+            
+        }
+        .swiper-slide{/*用来设置每个slide的样式*/
+            
+        }
+        .swiper-pagination{/*设置顶部圆点的样式*/
+            
+        }
+        .swiper-button-next,.swiper-button-next{/*改变左右箭头的样式*/
+            
+        }
+        .swiper-pagination-bullet{/*设置每个圆点的样式*/
+        
+        }
+        .swiper-pagination-bullet-active{/*设置当前slide对应圆点的样式*/
+        
+        }
+        .swiper-pagination-current{/*设置分式的分子样式*/
+        
+        }
+        .swiper-pagination-total{/*设置分式的分母样式*/
+        
+        }
+        .swiper-pagination-progressbar{/*设置进度条底层span的样式*/
+        
+        }
+        .swiper-pagination-progressbar-fill{/*设置进度条顶层span的样式*/
+        
+        }
+	</style>
+>布局
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide">Slide 7</div>
+            <div class="swiper-slide">Slide 8</div>
+            <div class="swiper-slide">Slide 9</div>
+            <div class="swiper-slide">Slide 10</div>
+        </div>
+        <!--用来显示分页器-->
+        <div class="swiper-pagination"></div>
+        <!--用来显示左右箭头-->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <!--用来显示滚动条-->
+        <div class="swiper-scrollbar"></div>
+    </div>
+>JS
+
+	<!--引入本地的swiper的js文件-->
+	<script src=""></script>
+	<!--引入swiper的CDN地址-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/js/swiper.js"></script>
+	<script>
+        let swiper = new Swiper(".swiper-container",{
+            initialSlide: 0,
+                //设置初始化时显示的slide的下标，默认为0
+            direction: "horizontal",
+                //设置切换的方向，默认为"horizontal"(水平)，"vertical"(垂直)
+            speed: 300;
+                //设置slide的速度，从开始切换到结束切换的时间，单位为ms(毫秒)，默认为300
+            grabCursor: false,
+                //设置鼠标显示的样式是否为手型，默认为false，不转化，true为转换
+            roundLengths: false,
+                //设置是否将slide的宽高四舍五入取整，以防某些分辨率的屏幕上文字或边界的模糊，默认为false，不取整，取整为true
+            autoHeight: false,
+                //自动高度,默认为false,设置为true时，wrapper和container会随着当前slide的高度而发生变化。
+            uniqueNavElements: true,
+                //设置框以外的分页器，按钮，进度条是否无效，默认为true(无效),有效设为false
+            runCallBacksOnInit: true,
+                //初始化时slide不为第一个或loop: true时，是否触发回调函数，不触发为false，默认触发为true
+            watchOverflow: false,
+                //当没有足够的silde用于切换时，是否隐藏导航等(按钮，进度条，按钮),默认为false，不隐藏，true为隐藏
+            init: true,
+                //设置swiper实例是否立即初始化，默认为true，初始化，false为不初始化，当为false时，需要用swiper实例调用init()方法初始化
+            centeredSlides: true,
+                //设置当前slide是否居中显示，默认为false，居左，true为居中显示
+            slidePerView: 1,
+                //设置slide容器能同时显示的slide数量，可以为数字(为小数时，不可循环)或"auto"根据silde的宽度容器自动设定
+            slidePerGroup: 1,
+                //设置几个slide为一组，切换一次性切换一组，默认为1
+            spaceBetween: 0,
+                //设置slide之间的间距，单位为px，默认为0
+            slidesPerColumn: 1,
+                //设置slide容器显示几行，默认为1
+            slidesPerColumnFill: "column",
+                //多行显示时，设置slide的排列方式,默认为"column"竖着排列，"row"为横着排
+            freeMode: false,
+                //设置是否为free模式(切换时不会自动贴合，想滑多少滑多少)，默认为false，不是free模式，true为free模式
+>以下7个属性基于freeMode为true
+
+            freeModeMomentum:false,
+                //设置是否有惯性,默认为true，有惯性，false为没有惯性，滑一下动一下
+            freeModeMomentumRatio: 1,
+                //设置触摸slide松开后，自动切换的时间，默认为1s
+            freeModeMomentumVelocityRatio: 1,
+                //设置slide惯性切换的速度，默认为1
+            freeModeMomentumBounce: false,
+                //动量反弹，slide惯性切换到尽头时，是否反弹恢复，默认为true，反弹恢复，false则不,注意与resistance(手动抵抗)区分
+            freeModeMomentumBounceRatio: 5,
+                //设置惯性切换到尽头时反弹的距离，值越大，距离越大，默认为1,基于freeMode为true和freeModeMomentumBounce为true
+            freeModeSticky: true,
+                //设置freeMode模式是否贴边，默认为false，不贴边，true为贴边，当滑过一个slide时，会自动切换至该slide贴边
+            freeModeMinimumVelocity: 0.02,
+                //设置惯性切换的最低速度，单位为px/ms，默认为0.02
+            loop: false,
+                //设置是否循环显示slide，默认为false，不循环，true为循环，当free模式与loop同用时，会产生反弹，因为没有时间加载slide
+>以下2个属性基于loop为true
+
+            loopAdditionalSlides: 0,
+                //设置除原本的slide之外前后预加载的slide的数量，默认为0，前后各加载一个，前后预加载的数量不会超过原本silde的数量
+            loopFillGroupWithBlank: false,
+                //与slidesPerGroup联用时，当slides不能被整除时，该属性设置是否给最后一组添加空的slide，默认为false，不添加，true为添加
+            
+            watchSlidesProgress: false,
+                //开启slide的progress(进度、进程)。swiper的进度、进程不要手动开启
+>slide的progress值
+
+>当前的slide的progress为0，左边依次+1，右边一次-1，值是实时改变的，而不是切换完成之后一次性改变
+>swiper的progress为0-1，每个slide占用的progress为1/(slides-1)
+			
+            preventClicks: true,
+                //设置切换误触，默认为true，误触模式，false则不是
+>eg:slide里面包含链接，当切换时误触链接，如果preventClicks为true则不会跳转，当其为false时，会跳转
+
+        preventClicksPropagation: true,
+            //设置是否阻止时间冒泡，默认为true，阻止，false为不阻止
+>eg:当给swiper设置点击事件，但是在切换slide时，如果不阻止时间冒泡，则会触发swiper的点击事件，阻止则不会触发
+			
+            slideToClickedSlide: false,
+                //是否将被点击的slide切换到当前位置，默认为false，不切换，true为切换
+            touchRatio: 0.5,
+                //设置实际滑动距离与slide切换距离的比，默认为1，可以为负数，表示鼠标滑动方向与slide切换方向相反
+            simulateTouch: true,
+                //鼠标模拟手机触摸，默认为true，表示模拟，false表示不模拟
+>eg:当simulateTouch为true时，表示PC端swiper可切换，当为false时，PC上不能切换，手机版仍可切换
+	
+            allowTouchMove: true,//设置slide是否可以切换，默认为true，可以切换，false为不能切换，
+>当为false是，只能调用一些函数进行slide切换，该属性等同于swiper3的onlyExternal
+
+>eg:slideNext()/slidePrev()/SlideTo()等
+
+            followFinger: true,
+                //设置slide是否跟着鼠标/手指一起滑动。默认为true，手指/鼠标滑动时，slide跟着滑动，false则不，只有当手指/鼠标抬起时才会滑动
+            shortSwipes: true,
+                //设置是否短切换，默认为true，支持短切换，为false时，只有当slide被滑过一半时，松开后才会切换过去
+            longSwipers: true,
+                //设置slide是否支持长时间长距离滑动，默认为true，支持。false为不支持，只有滑动速度快时，才能切过去
+            longSwipersMs: 300,
+                //设置长时间则不切换的时间限制，默认为300，单位为ms，超过该事件则不会被滑过去
+            loopSwiperRatio: 0.5,
+                //设置可以触发滑动的长滑动的最短距离百分比，最大为0.5
+            threshold: false,
+                //设置slide可被切换的最小拖动距离，单位为px
+            resistance: true,
+                //设置是否有反弹抵抗力，默认为true，有抵抗力，false为没有抵抗力
+            resistanceRatio: 0.85,
+                //设置反弹的距离，默认为0.85,0是不反弹
+            preventIntercationOnTransition : true,
+                //设置slide在切换的过程中是否可以禁止继续操作，默认为false，不禁止，true为禁止
+            noSwiping : true,
+                //设置slide是否禁止切换，默认为false，不禁止，true为禁止
+>使用时需要给指定标签(直接给slide设置或者slide里面的某个标签)加入"swiper-no-swiping"类选择器
+			
+            noSwipingSelector: 'input',
+                //设置slide中具体不可切换的元素
+>使用时需要给指定元素添加"swiper-no-swiping"类选择器
+            
+            allowSlideNext: false,
+                //设置slide是否可以向右/下(垂直)切换，默认为true，可以，false为不可以
+            allowSlidePrev: false,
+                //设置slide是否可以向左/上(垂直)切换，默认为true，可以，false为不可以
+>组件
+
+>自动切换
+
+>当值为Boolean值时，true表示开启自动切换，并且控制的属性均为默认值，false表示不自动切换
+>当值为object时，可以设置一些属性来控制自动切换
+
+            autoplay: {
+                delay: 3000,
+                    //设置slide切换完成之后停留的时间，单位ms，默认为3000
+                stopOnLastSlide: false,
+                    //设置slide是否在切换到最后一个是停止自动切换，默认为false，不停止，true为停止
+                disableOnInteraction: true,
+                    //设置自动切换时，yoghurt操作slide之后，是否停止自动切换，默认为true，停止。false为不停止
+                reverseDirection: true,
+                    //设置slide自动切换到最后一个时，是否开启反向轮播，默认为false，不开启，true为开启
+                waitForTransition: true,
+                    //设置是否等待slide切换开始计时，默认为true，等待，false为不等待
+            },
+>切换效果
+
+            effects: "slide",
+                //设置slide的切换效果，默认为"slide"(普通切换)，"fade"(淡入)，"cube"(方块)，"coverflow"(3D流)，"flip"(3D翻转)
+>          当effects为"fade"时可以设置的属性
+            fadeEffect: {
+                crossFade: false,//设置在该slide淡入时，原slide是否会淡出，默认为false，不会淡出，true为淡出
+            },
+>          当effects为"cube"时可以设置的属性
+            cubeEffect:{
+                slideShadows: true,
+                    //设置是否开启slide投影，默认为true，开启，false为不开启
+                shadow: true,
+                    //设置是否开启投影，默认为true，开启，false为不开启
+                shadowOffset: 100,
+                    //设置投影与slide之间的距离，默认为20，单位为px
+                shadowScale: 0.6,
+                    //设置投影比例，默认为0.94
+            },
+>          当effects为"coverflow"时可以设置的属性
+            coverflowEffect: {
+                rotate: 50,
+                    //设置slide做3D旋转是Y轴的旋转角度，默认为50
+                stretch: 0,
+                    //设置slide之间的拉伸值，越大slide靠的越紧，默认为0
+                depth: 100,
+                    //设置slide的深度，值越大，离Z轴越远，默认为100
+                modifier: 1,
+                    //设置depth和rotate和stretch的倍率，默认为1
+                slideShadows: true,
+                    //设置是否开启slide阴影，默认为true，开启，false为关闭
+            },
+            flipEffect: {//当effects为"flip"时可以设置的属性
+                slideShadows: true,//设置是否开启slide投影，默认为true，开启，false为关闭
+                limitRotation: true,//设置是否限制最大旋转角度为180°，默认为true，限制，false为不限制
+            },
+>分页器
+
+            pagination: {
+                el: '.swiper-pagination',
+                    //设置显示分页器的的容器，默认为null
+                hideOnClick: false,
+                    //设置点击swiper是否隐藏分页器，默认为false，不隐藏，true为隐藏
+                type: 'bullets',
+                    //设置分页器的样式，默认为"bullets"(圆点)，"fraction"(分式)，"progressbar"(进度条)
+>               以下属性在type为bullets时有效--圆点分页器
+                
+                bulletElement: 'li',
+                    //设置显示圆点的元素
+                dynamicMainBullets: 1,
+                    //设置圆点分页器的主点个数，默认为1，与dynamicBullets: true,联用
+                dynamicBullets: false,
+                    //设置是否隐藏部分圆点，默认为false，不隐藏，true为隐藏
+                clickable: false,
+                    //设置点击圆点是否可以控制slide的切换，默认为false，不可以，true为可以
+                renderBullet: function (index, className) {
+                    /*
+                        switch(index){//用来显示自定义的文本，将(index + 1)替换为text即可
+                            case 0:text='壹';break;
+                            case 1:text='贰';break;
+                            case 2:text='叁';break;
+                            case 3:text='肆';break;
+                            case 4:text='伍';break;
+                        }
+                    */
+                    return `<span class="${className}">${(index + 1)}</span>`;
+                },
+                    //也可以自定义span内容 
+                
+>              以下属性在type为progressbar时有效--进度条
+
+                progressbarOpposite: true,
+                    //设置进度条的方向是否与slide切换方向一致，默认为true，一致，false为不一致
+>               以下属性在type为fraction是有效--分式
+
+                renderFraction: function (currentClass, totalClass) {
+                    return `<span class="${currentClass}"></span> of <span class="${totalClass}"></span>`;
+                },
+                formatFractionCurrent: function (number) {
+                    /*eg:
+                        switch(number){
+                            case 1:myNum='壹'';break;
+                            case 2:myNum='贰';break;
+                            case 3:myNum='叁';break;
+                            default:myNum= number;
+                        }
+                    */
+                    return myNum; 
+                },
+                    //定义分式分页器分子的字符  
+                formatFractionTotal: function (number) {
+                    /*eg:
+                        switch(number){
+                            case 1: myNum='壹';break;
+                            case 2: myNum='贰';break;
+                            case 3: myNum='叁';break;
+                            default: myNum= number;
+                        }
+                    */
+                    return myNum; 
+                },
+                    //定义分式分页器分母的字符
+            },
+>          按钮
+
+            navigation:{
+                nextEl:".swiper-button-next",
+                    //引用右箭头的样式
+                prevEl:".swiper-button-prev",
+                    //引用左箭头的样式
+                hideOnClick: true,
+                    //设置点击slide是否可以隐藏箭头，默认为false，不隐藏，true为隐藏
+            },
+>          滚动条
+
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                    //设置滚动条的容器
+                hide: true,
+                    //设置滚动条是否自动隐藏，默认为true，自动隐藏，false为不自动隐藏
+                draggable: false,
+                    //设置是否允许拖动滚动条，默认为false不允许，true为允许
+                snapOnRelease: false,
+                    //设置滚动条是否自动贴合，默认为true，自动贴合，false为不自动贴合，使用时需要和draggable: true,联用
+                dragSize: "auto",
+                    //设置滚动条的长度，默认为"auto"，自适应，可以为数字，单位为px
+                
+            },
+>键盘控制
+
+>当值为Boolean值时，true表示键盘方向键可以控制slide的切换，并且控制的属性均为默认值，false表示键盘不能控制
+>当值为object时，可以设置一些属性对键盘控制进行改变
+
+            keyboard: {
+                enabled: true,
+                    //设置是否可以使用键盘切换，默认为false，不可以，true为可以
+                onlyInViewport: true,
+                    //设置键盘是否仅可控制窗口内的swiper，默认为true，是，false为不是
+            },
+>鼠标滚轮
+
+>当值为Boolean值时，true表示鼠标滚轮可以控制slide的切喊，并且控制的属性均为默认值，false表示滚轮不能控制
+>当值为object时，可以设置一些属性对键盘控制进行改变
+
+            mousewheel: {
+                forceToAxis: false,
+                    //设置普通鼠标的垂直滚轮是否可以控制水平的slide切换，默认为false，可以控制，true为不可以控制
+                releaseOnEdges: true,
+                    //设置当滑到第一个或最后一个slide时，swiper是否释放鼠标滚动事件。，默认为false，不释放，true为释放
+                invert: true,
+                    //设置鼠标滚轮是否反向控制，默认为false，不是，true为是
+                sensitivity : 0.1,
+                    //设置鼠标滚轮的灵敏度，值越大，swiper位移越大，默认为1
+                eventsTarged: 'container',
+                    //设置鼠标滚动事件的接受目标，默认为container，     
+            },
+>调焦
+
+>当值为boolean时，true代表开启，并且控制属性为默认值，false代表关闭
+>当值为object时，可以设置一些属性对调焦进行改变
+
+            zoom: {
+                maxRatio: 3,
+                    //设置最大放大比例，默认为3。
+                minRatio: 1,
+                    //设置最小放大比例，默认为1
+                toggle: true,
+                    //设置是否允许双击缩放，默认为true，允许，false为不允许，但手机端可以触摸缩放
+                
+            },
+>虚拟slide
+
+>当值为boolean时，true代表开启，并且控制属性为默认值，false代表关闭
+>当值为object时，可以设置一些属性对调焦进行改变
+
+>虚拟Slide会在Dom结构中保持尽量少的Slide，只渲染当前可见的slide和前后的slide，而隐藏其他不可见的Slide，每次切换时就渲染新的Slide。当你的Slide很多的时候，尤其是Slide中有复杂的Dom树结构时，性能会有很大的提升。
+virtual参数
+        
+            virtual: {
+                slides: (function () {
+                    var slides = [];
+                    for (var i = 0; i < 600; i += 1) {
+                        slides.push('Slide ' + (i + 1));
+                    }
+                    return slides;
+                }()),
+                    //设置需要添加的虚拟slide的内容
+                cache: true, 
+                    //设置是否开启虚拟Slide的DOM缓存（默认值）。虚拟的Slide被渲染后，会存入到缓存中，也可以从缓存中重新获得该Slide。，默认为true，开启，false为关闭
+            },
+>历史记录
+
+>值为Boolean时，true为开启，使用默认值，false为不开启
+
+>在slide切换时无刷新更换URL和浏览器的history.state(pushState)。这样每个slide都会拥有一个自己的URL。
+使用history还必需在slide上增加一个属性data-history，例<div class="swiper-slide" data-history="slide1"></div>
+开启history会取消hashnav。
+
+            history: {
+                replaceState: true,
+                key: "slides",
+                    //设置url的接续词，默认为slides 
+            },
+            
+        });
+            //当定义一个只能简单切换的swiper时，不需要第二个参数
+>方法
+        
+        swiper.autoplay.start();
+            //设置swiper开始自动切换，一般在按钮的点击事件中调用
+        swiper.autoplay.stop();
+            //设置swiper停止自动切换，一般在按钮的点击事件中调用
+        swiper.scrollbar.el;
+            //获取滚动条的HTML元素，还可通过$el获取DOM7。
+        swiper.scrollbar.dragEl;
+            //获取滚动条指示条的HTML元素，还可通过$dragEl获取DOM7。
+        swiper.keyboard.enable(); 
+            //开启键盘控制，一般在按钮的点击事件中调用
+        swiper.keyboard.disable(); 
+            //禁止键盘控制，一般在按钮的点击事件中调用
+        swiper.mousewheel.enable(); 
+            //开启鼠标滑轮控制
+        swiper.mousewheel.disable(); 
+            //禁止鼠标滑轮控制
+        mySwiper.zoom.enabled;
+            //判断调焦是否开启
+        mySwiper.zoom.scale;
+            //获取当前图片的缩放比例
+        mySwiper.zoom.enable();
+            //开启调焦
+        mySwiper.zoom.disable();
+            //关闭调焦
+        mySwiper.zoom.toggle(); 
+            //当前图片在缩放之间自由切换，一般在按钮的点击事件中调用
+        mySwiper.zoom.in(); 
+            //当前图片放大
+        mySwiper.zoom.out(); 
+            //当前图片缩小
+        mySwiper.virtual.cache;
+            //获取或设置已渲染的HTML
+        mySwiper.virtual.slides;
+            //获取或设置所有虚拟slide
+    </script>
